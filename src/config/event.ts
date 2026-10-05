@@ -7,7 +7,7 @@ export const EVENT_START = "09:00";
 export const EVENT_END = "13:00";
 export const EVENT_TIMEZONE = "America/Los_Angeles";
 
-export const EVENT_NAME = "Sunrise Rave: Jay's 30th";
+export const EVENT_NAME = "Bani Adam: Jay's 30th";
 export const EVENT_CITY = "Los Angeles";
 
 export const DONATION_URL = "https://togetherasonela.org";

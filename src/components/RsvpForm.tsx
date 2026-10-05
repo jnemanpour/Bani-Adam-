@@ -7,7 +7,7 @@ type Attending = "yes" | "maybe" | "no";
 type Status = { kind: "idle" } | { kind: "sending" } | { kind: "done"; attending: Attending; updated: boolean } | { kind: "error"; message: string };
 
 const field =
-  "mt-2 block w-full rounded-xl border-2 border-white/15 bg-night px-4 py-3 text-lg text-white placeholder:text-white/40 focus:border-cyan focus:outline-none aria-[invalid=true]:border-pink";
+  "mt-2 block w-full rounded-xl border-2 border-white/15 bg-night px-4 py-3 text-lg text-cream placeholder:text-cream/40 focus:border-palm focus:outline-none aria-[invalid=true]:border-hibiscus";
 const label = "block text-base font-bold";
 
 export default function RsvpForm({ googleUrl }: { googleUrl: string }) {
@@ -57,11 +57,11 @@ export default function RsvpForm({ googleUrl }: { googleUrl: string }) {
   if (status.kind === "done") {
     const going = status.attending !== "no";
     return (
-      <div ref={doneRef} tabIndex={-1} role="status" className="rounded-3xl border-2 border-sun bg-night p-8 text-center shadow-[0_0_50px_-10px_var(--color-orange)] focus:outline-none">
+      <div ref={doneRef} tabIndex={-1} role="status" className="rounded-3xl border-2 border-gold bg-night p-8 text-center shadow-[0_0_50px_-10px_var(--color-coral)] focus:outline-none">
         <div className="text-6xl" aria-hidden>
           {going ? "🌅" : "💌"}
         </div>
-        <h3 className="neon mt-4 text-3xl leading-snug sm:text-4xl">{going ? "You're on the list" : "We'll miss you"}</h3>
+        <h3 className="title mt-4 text-3xl leading-snug sm:text-4xl">{going ? "You're on the list" : "We'll miss you"}</h3>
         <p className="mt-4 text-lg text-mist">
           {going
             ? status.attending === "maybe"
@@ -72,15 +72,15 @@ export default function RsvpForm({ googleUrl }: { googleUrl: string }) {
         </p>
         {going ? (
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <a href="/calendar.ics" className="rounded-full bg-sun px-6 py-4 font-bold text-night transition hover:bg-white">
+            <a href="/calendar.ics" className="rounded-full bg-gold px-6 py-4 font-bold text-night transition hover:bg-coral">
               Add to calendar (.ics)
             </a>
-            <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border-2 border-cyan px-6 py-4 font-bold text-cyan transition hover:bg-cyan hover:text-night">
+            <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border-2 border-palm px-6 py-4 font-bold text-palm transition hover:bg-palm hover:text-night">
               Google Calendar
             </a>
           </div>
         ) : (
-          <a href="#give" className="mt-6 inline-block rounded-full bg-pink px-6 py-4 font-bold text-night">
+          <a href="#give" className="mt-6 inline-block rounded-full bg-hibiscus px-6 py-4 font-bold text-night">
             Give instead
           </a>
         )}
@@ -93,14 +93,14 @@ export default function RsvpForm({ googleUrl }: { googleUrl: string }) {
 
   const err = (name: string) =>
     errors[name] ? (
-      <p id={`${name}-err`} className="mt-1 text-sm font-bold text-pink">
+      <p id={`${name}-err`} className="mt-1 text-sm font-bold text-hibiscus">
         {errors[name]}
       </p>
     ) : null;
   const a11y = (name: string) => ({ "aria-invalid": Boolean(errors[name]), "aria-describedby": errors[name] ? `${name}-err` : undefined });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="relative space-y-6 rounded-3xl border-2 border-cyan/40 bg-night p-6 sm:p-8">
+    <form onSubmit={onSubmit} noValidate className="relative space-y-6 rounded-3xl border-2 border-palm/40 bg-night p-6 sm:p-8">
       {/* Honeypot */}
       <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
         <label>
@@ -134,8 +134,8 @@ export default function RsvpForm({ googleUrl }: { googleUrl: string }) {
         <div className="mt-2 grid grid-cols-3 gap-2">
           {(
             [
-              ["yes", "Yes!", "peer-checked:bg-sun peer-checked:border-sun"],
-              ["maybe", "Maybe", "peer-checked:bg-orange peer-checked:border-orange"],
+              ["yes", "Yes!", "peer-checked:bg-gold peer-checked:border-gold"],
+              ["maybe", "Maybe", "peer-checked:bg-coral peer-checked:border-coral"],
               ["no", "Can't", "peer-checked:bg-mist peer-checked:border-mist"],
             ] as const
           ).map(([value, text, checked]) => (
@@ -149,7 +149,7 @@ export default function RsvpForm({ googleUrl }: { googleUrl: string }) {
                 onChange={() => setAttending(value)}
                 aria-describedby={errors.attending ? "attending-err" : undefined}
               />
-              <span className={`flex min-h-14 cursor-pointer items-center justify-center rounded-xl border-2 border-white/20 px-2 text-lg font-bold transition peer-checked:text-night peer-focus-visible:outline peer-focus-visible:outline-3 peer-focus-visible:outline-cyan ${checked}`}>
+              <span className={`flex min-h-14 cursor-pointer items-center justify-center rounded-xl border-2 border-white/20 px-2 text-lg font-bold transition peer-checked:text-night peer-focus-visible:outline peer-focus-visible:outline-3 peer-focus-visible:outline-palm ${checked}`}>
                 {text}
               </span>
             </label>
@@ -197,7 +197,7 @@ export default function RsvpForm({ googleUrl }: { googleUrl: string }) {
               {VOLUNTEER_ROLES.map((role) => (
                 <label key={role} className="relative">
                   <input type="checkbox" name="volunteer" value={role} className="peer sr-only" />
-                  <span className="flex min-h-12 cursor-pointer items-center justify-center rounded-xl border-2 border-white/20 px-2 text-center font-bold transition peer-checked:border-cyan peer-checked:bg-cyan peer-checked:text-night peer-focus-visible:outline peer-focus-visible:outline-3 peer-focus-visible:outline-cyan">
+                  <span className="flex min-h-12 cursor-pointer items-center justify-center rounded-xl border-2 border-white/20 px-2 text-center font-bold transition peer-checked:border-palm peer-checked:bg-palm peer-checked:text-night peer-focus-visible:outline peer-focus-visible:outline-3 peer-focus-visible:outline-palm">
                     {role}
                   </span>
                 </label>
@@ -213,7 +213,7 @@ export default function RsvpForm({ googleUrl }: { googleUrl: string }) {
       </div>
 
       {status.kind === "error" && (
-        <p role="alert" className="rounded-xl border-2 border-pink bg-pink/10 p-4 font-bold text-pink">
+        <p role="alert" className="rounded-xl border-2 border-hibiscus bg-hibiscus/10 p-4 font-bold text-hibiscus">
           {status.message}
         </p>
       )}
@@ -221,7 +221,7 @@ export default function RsvpForm({ googleUrl }: { googleUrl: string }) {
       <button
         type="submit"
         disabled={status.kind === "sending"}
-        className="w-full rounded-full bg-pink px-8 py-4 text-xl font-bold text-night shadow-[0_0_30px_var(--color-pink)] transition hover:bg-white disabled:opacity-60"
+        className="w-full rounded-full bg-hibiscus px-8 py-4 text-xl font-bold text-night shadow-[0_0_30px_var(--color-hibiscus)] transition hover:bg-coral disabled:opacity-60"
       >
         {status.kind === "sending" ? "Sending…" : "Send my RSVP"}
       </button>

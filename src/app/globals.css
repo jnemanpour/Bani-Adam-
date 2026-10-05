@@ -1,15 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-pink: #ff2e92;
-  --color-orange: #ff8a2b;
-  --color-sun: #ffe24a;
-  --color-cyan: #3df2ff;
-  --color-night: #07040f;
-  --color-night-2: #120a24;
-  --color-mist: #cfc6e6;
-  --font-display: var(--font-monoton), "Rubik", system-ui, sans-serif;
-  --font-sans: var(--font-rubik), system-ui, sans-serif;
+  --color-night: #050806;
+  --color-night-2: #0a1510;
+  --color-leaf: #12301f;
+  --color-palm: #8fd19e;
+  --color-hibiscus: #ff4f6d;
+  --color-coral: #ff7a59;
+  --color-gold: #ffc46b;
+  --color-cream: #fff6ec;
+  --color-mist: #c4cfc0;
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-script: var(--font-pinyon), cursive;
+  --font-persian: var(--font-nastaliq), serif;
+  --font-sans: var(--font-jost), system-ui, sans-serif;
 }
 
 html {
@@ -19,89 +23,66 @@ html {
 
 body {
   background: var(--color-night);
-  color: #fff;
+  color: var(--color-cream);
 }
 
 ::selection {
-  background: var(--color-pink);
+  background: var(--color-hibiscus);
   color: var(--color-night);
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-cyan);
+  outline: 3px solid var(--color-gold);
   outline-offset: 3px;
 }
 
-.neon {
-  font-family: var(--font-display);
+/* Section headings: cream serif caps with a soft warm glow, like the logo on black. */
+.title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-cream);
+  text-shadow: 0 0 24px rgb(255 122 89 / 0.25);
+}
+
+.script {
+  font-family: var(--font-script);
   font-weight: 400;
-  color: #fff4f9;
-  text-shadow:
-    0 0 4px #fff,
-    0 0 12px var(--color-pink),
-    0 0 28px var(--color-pink),
-    0 0 48px var(--color-orange);
+  color: var(--color-coral);
 }
 
-.neon-sub {
-  color: var(--color-sun);
-  text-shadow: 0 0 14px rgb(255 138 43 / 0.7);
+/* Dark jungle backdrop: layered green glows on near-black. */
+.jungle {
+  background:
+    radial-gradient(60% 50% at 15% 20%, rgb(31 77 43 / 0.45), transparent 70%),
+    radial-gradient(50% 45% at 85% 70%, rgb(31 77 43 / 0.4), transparent 70%),
+    var(--color-night-2);
 }
 
-/* ---------- Hero sunrise ---------- */
-.sky {
-  background: linear-gradient(
-    180deg,
-    #07040f 0%,
-    #1a0b33 28%,
-    #5a1257 50%,
-    #c21f6e 64%,
-    #ff6a3d 76%,
-    #ffb347 86%,
-    #ffe24a 100%
-  );
+/* ---------- Hero ---------- */
+.hero-art {
+  animation: bloom 2.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  mask-image: radial-gradient(closest-side, #000 82%, transparent 100%);
 }
 
-.sun {
-  width: min(80vw, 420px);
-  aspect-ratio: 1;
-  border-radius: 9999px;
-  background: linear-gradient(180deg, var(--color-sun) 0%, var(--color-orange) 30%, var(--color-pink) 50%);
-  mask-image: linear-gradient(180deg, #000 0 30%, transparent 30% 31.5%, #000 31.5% 37%, transparent 37% 39%, #000 39% 43%, transparent 43% 45.5%, #000 45.5%);
-  box-shadow:
-    0 0 60px rgb(255 138 43 / 0.7),
-    0 0 140px rgb(255 46 146 / 0.55);
-  animation: rise 3.2s cubic-bezier(0.2, 0.7, 0.2, 1) both, pulse 4s ease-in-out 3.2s infinite;
+@keyframes bloom {
+  from { transform: scale(0.94); }
+  to { transform: scale(1); }
 }
 
-@keyframes rise {
-  from { transform: translateY(45%); opacity: 0.4; }
-  to { transform: translateY(0); opacity: 1; }
+.sunrise-glow {
+  background: radial-gradient(55% 60% at 50% 100%, rgb(255 122 89 / 0.45), rgb(255 79 109 / 0.18) 45%, transparent 75%);
+  animation: dawn 6s ease-in-out infinite alternate;
 }
 
-@keyframes pulse {
-  50% { box-shadow: 0 0 80px rgb(255 138 43 / 0.85), 0 0 180px rgb(255 46 146 / 0.7); }
-}
-
-.grid-floor {
-  background-image:
-    linear-gradient(var(--color-pink) 2px, transparent 2px),
-    linear-gradient(90deg, var(--color-pink) 2px, transparent 2px);
-  background-size: 60px 60px;
-  transform: perspective(320px) rotateX(62deg);
-  transform-origin: top center;
-  animation: grid 1.6s linear infinite;
-  mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.9), transparent 90%);
-  box-shadow: 0 -2px 30px var(--color-pink);
-}
-
-@keyframes grid {
-  to { background-position: 0 60px; }
+@keyframes dawn {
+  from { opacity: 0.65; }
+  to { opacity: 1; }
 }
 
 /* ---------- Marquee ---------- */
 .marquee-track {
-  animation: marquee 28s linear infinite;
+  animation: marquee 32s linear infinite;
 }
 
 @keyframes marquee {
@@ -124,8 +105,8 @@ details[open] .faq-plus {
   html {
     scroll-behavior: auto;
   }
-  .sun,
-  .grid-floor,
+  .hero-art,
+  .sunrise-glow,
   .marquee-track {
     animation: none !important;
   }

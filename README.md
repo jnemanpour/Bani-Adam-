@@ -1,4 +1,4 @@
-# Sunrise Rave · Jay's 30th
+# Bani Adam · Jay's 30th
 
 One-page invite and RSVP site. Next.js (App Router) + TypeScript + Tailwind, Supabase for RSVPs, Resend for confirmation emails, deployed on Vercel.
 

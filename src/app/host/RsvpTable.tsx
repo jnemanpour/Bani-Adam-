@@ -15,7 +15,7 @@ function toCsv(rows: Rsvp[]) {
   return [COLUMNS.join(","), ...rows.map((r) => COLUMNS.map((c) => cell(r[c])).join(","))].join("\r\n");
 }
 
-const badge = { yes: "bg-sun text-night", maybe: "bg-orange text-night", no: "bg-white/15 text-mist" } as const;
+const badge = { yes: "bg-gold text-night", maybe: "bg-coral text-night", no: "bg-white/15 text-mist" } as const;
 
 export default function RsvpTable({ rows }: { rows: Rsvp[] }) {
   const [q, setQ] = useState("");
@@ -46,7 +46,7 @@ export default function RsvpTable({ rows }: { rows: Rsvp[] }) {
         </h2>
         <div className="flex flex-wrap gap-2">
           <label className="sr-only" htmlFor="q">Search</label>
-          <input id="q" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search name, phone, note…" className="rounded-full border-2 border-white/15 bg-night px-4 py-2 focus:border-cyan focus:outline-none" />
+          <input id="q" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search name, phone, note…" className="rounded-full border-2 border-white/15 bg-night px-4 py-2 focus:border-palm focus:outline-none" />
           <label className="sr-only" htmlFor="f">Filter</label>
           <select id="f" value={filter} onChange={(e) => setFilter(e.target.value as typeof filter)} className="rounded-full border-2 border-white/15 bg-night px-4 py-2">
             <option value="all">All</option>
@@ -54,7 +54,7 @@ export default function RsvpTable({ rows }: { rows: Rsvp[] }) {
             <option value="maybe">Maybe</option>
             <option value="no">No</option>
           </select>
-          <button onClick={download} className="rounded-full bg-cyan px-4 py-2 font-bold text-night">Export CSV</button>
+          <button onClick={download} className="rounded-full bg-palm px-4 py-2 font-bold text-night">Export CSV</button>
         </div>
       </div>
 

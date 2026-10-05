@@ -7,7 +7,7 @@ const stamp = (d: Date) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}
 const escapeIcs = (s: string) => s.replace(/\\/g, "\\\\").replace(/;/g, "\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
 
 function description() {
-  return `Sober, all-ages sunrise rave. No gifts: please give to Together As One instead. ${DONATION_URL}\n\n${siteUrl()}`;
+  return `Sober, all-ages sunrise dance party. No gifts: please give to Together As One instead. ${DONATION_URL}\n\n${siteUrl()}`;
 }
 
 /** Calendar file. Pass `location` only in private channels (the email); the public download never has the address. */
@@ -15,7 +15,7 @@ export function buildIcs(location: string = PUBLIC_LOCATION): string {
   const lines = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Sunrise Rave//RSVP//EN",
+    "PRODID:-//Bani Adam//RSVP//EN",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",
