@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Bani Adam//RSVP//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:sunrise-rave-jay-30@jnemanpour.github.io
+DTSTAMP:20261005T013435Z
+DTSTART:20261031T160000Z
+DTEND:20261031T200000Z
+SUMMARY:Bani Adam: Jay's 30th
+LOCATION:Jay's house\, Los Angeles (address is in your RSVP email)
+DESCRIPTION:Sober\, all-ages sunrise dance party. No gifts: please give to Together As One instead. https://togetherasonela.org\n\nhttps://jnemanpour.github.io/Bani-Adam-
+URL:https://jnemanpour.github.io/Bani-Adam-
+END:VEVENT
+END:VCALENDAR
