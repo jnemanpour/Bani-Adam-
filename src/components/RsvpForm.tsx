@@ -9,6 +9,8 @@ type Status = { kind: "idle" } | { kind: "sending" } | { kind: "done"; attending
 const field =
   "mt-2 block w-full rounded-xl border-2 border-white/15 bg-night px-4 py-3 text-lg text-cream placeholder:text-cream/40 focus:border-palm focus:outline-none aria-[invalid=true]:border-hibiscus";
 const label = "block text-base font-bold";
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const PREVIEW = process.env.NEXT_PUBLIC_PREVIEW === "1";
 
 export default function RsvpForm({ googleUrl }: { googleUrl: string }) {
   const [attending, setAttending] = useState<Attending | null>(null);
@@ -33,10 +35,14 @@ export default function RsvpForm({ googleUrl }: { googleUrl: string }) {
       note: fd.get("note") ?? "",
       website: fd.get("website") ?? "",
     };
+    if (PREVIEW) {
+      setStatus({ kind: "error", message: "This is a design preview, so RSVPs aren't saved yet. The real link is coming soon." });
+      return;
+    }
     setStatus({ kind: "sending" });
     setErrors({});
     try {
-      const res = await fetch("/api/rsvp", {
+      const res = await fetch(`${BASE}/api/rsvp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -72,7 +78,7 @@ export default function RsvpForm({ googleUrl }: { googleUrl: string }) {
         </p>
         {going ? (
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <a href="/calendar.ics" className="rounded-full bg-gold px-6 py-4 font-bold text-night transition hover:bg-coral">
+            <a href={`${BASE}/calendar.ics`} className="rounded-full bg-gold px-6 py-4 font-bold text-night transition hover:bg-coral">
               Add to calendar (.ics)
             </a>
             <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border-2 border-palm px-6 py-4 font-bold text-palm transition hover:bg-palm hover:text-night">

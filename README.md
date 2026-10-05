@@ -29,3 +29,7 @@ npm run dev
 - `/calendar.ics` and the Google Calendar link are public, so they show "Jay's house, Los Angeles" and never the street address.
 - `/host`: password-protected. Shows totals, a warning when expected headcount (yes + maybe) is over `CAPACITY`, volunteers grouped by role, and a searchable table with CSV export.
 - `opengraph-image.tsx`: generates the link-preview image for iMessage and WhatsApp.
+
+## Design preview (GitHub Pages)
+
+`./scripts/build-preview.sh` builds a static copy into `out/` with no backend: the form shows a "preview" notice and `/host` is left out. It's published on the `gh-pages` branch at https://jnemanpour.github.io/Bani-Adam-/. Send guests the real Vercel link, not this one.

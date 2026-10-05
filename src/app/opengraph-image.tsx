@@ -6,6 +6,7 @@ import { EVENT_CITY, EVENT_START, formatDateShort, formatTime } from "@/config/e
 export const alt = "Bani Adam · Jay's 30th";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+export const dynamic = "force-static";
 
 export default async function OgImage() {
   const asset = (f: string) => readFile(join(process.cwd(), "src/assets", f));
